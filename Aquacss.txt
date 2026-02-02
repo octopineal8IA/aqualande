@@ -1,0 +1,31 @@
+:root { --truite-rose: #ff69b4; --acier: #4682B4; --croquette: #2ecc71; --dechet: #e74c3c; }
+body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; margin: 0; overflow-x: hidden; }
+
+.header { display: flex; justify-content: space-between; padding: 15px; background: #222; align-items: center; border-bottom: 3px solid var(--truite-rose); }
+.logo-text { font-weight: bold; color: var(--truite-rose); }
+.secteurs { display: flex; gap: 10px; padding: 15px; }
+.secteurs select { flex: 1; padding: 15px; border-radius: 12px; background: #333; color: white; border: 1px solid #555; font-size: 1rem; }
+
+.input-box { background: #2c2c2c; padding: 20px; border-radius: 20px; margin: 10px; border: 1px solid #444; }
+.disabled { opacity: 0.2; pointer-events: none; }
+
+.fish-btn { position: relative; width: 100%; height: 90px; margin: 15px 0; background: none; border: none; display: flex; align-items: center; justify-content: center; }
+.fish-body { position: absolute; width: 80%; height: 100%; border-radius: 50px 100px 100px 50px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.4rem; color: white; left: 15%; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+.fish-tail { position: absolute; left: 5%; width: 45px; height: 100%; clip-path: polygon(0% 0%, 100% 50%, 0% 100%); }
+.badge { margin-left: 15px; background: rgba(0,0,0,0.3); padding: 5px 15px; border-radius: 10px; }
+
+.fish-good .fish-body, .fish-good .fish-tail { background: linear-gradient(to right, var(--croquette), #27ae60); }
+.fish-bad .fish-body, .fish-bad .fish-tail { background: linear-gradient(to right, var(--dechet), #c0392b); }
+
+.btn-kb { background: #444; border: none; color: #bbb; padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; margin-bottom: 10px; }
+.btn-valider { background: var(--truite-rose); width: 100%; padding: 20px; border-radius: 15px; color: white; font-weight: bold; font-size: 1.3rem; border: none; margin-top: 15px; }
+.btn-clear { background: none; border: 1px solid #555; color: #888; padding: 10px; border-radius: 10px; width: 100%; }
+
+#numpad { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: #1a1a1a; padding: 20px; border-top: 5px solid var(--truite-rose); z-index: 9999; box-sizing: border-box; }
+.numpad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.numpad-grid button { padding: 25px; font-size: 1.8rem; background: #333; color: white; border: none; border-radius: 15px; }
+#numpad-val { font-size: 3rem; margin-bottom: 20px; color: var(--truite-rose); font-weight: bold; }
+.numpad-done { background: var(--truite-rose); width: 100%; padding: 20px; margin-top: 15px; border-radius: 15px; color: white; font-weight: bold; font-size: 1.5rem; border: none; }
+
+.entry { background: #333; margin: 10px; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-left: 6px solid var(--truite-rose); }
+#btn-final { width: 90%; padding: 20px; background: white; color: black; border-radius: 15px; border: none; font-weight: bold; font-size: 1.2rem; margin: 20px auto; display: block; }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <title>Aqualande Pro</title>
+</head>
+<body>
+    <div class="header">
+        <select id="siteID">
+            <option value="Sore">SORE</option><option value="Pissos">PISSOS</option>
+        </select>
+        <span class="logo-text">AQUALANDE PRO</span>
+    </div>
+
+    <div class="secteurs">
+        <select id="selectA" onchange="activerBassin('A')">
+            <option value="">Secteur A</option>
+            <script>for(let i=1;i<=8;i++) document.write(`<option value="${i}">Bassin ${i}</option>`);</script>
+        </select>
+        <select id="selectB" onchange="activerBassin('B')">
+            <option value="">Secteur B</option>
+            <script>for(let i=1;i<=8;i++) document.write(`<option value="${i}">Bassin ${i}</option>`);</script>
+        </select>
+    </div>
+
+    <div id="ui-main" class="input-box disabled">
+        <h2 id="bassin-label">Choisir Bassin</h2>
+        
+        <div class="fish-btn fish-good" onclick="changeQty('bons', 1)">
+            <div class="fish-tail"></div>
+            <div class="fish-body">+1 BON <span id="disp-bons" class="badge">0</span></div>
+        </div>
+        <button class="btn-kb" onclick="openNumpad('bons')">⌨️ Modifier Bons</button>
+
+        <div class="fish-btn fish-bad" onclick="changeQty('mauvais', 1)">
+            <div class="fish-tail"></div>
+            <div class="fish-body">+1 MAUVAIS <span id="disp-mauvais" class="badge">0</span></div>
+        </div>
+        <button class="btn-kb" onclick="openNumpad('mauvais')">⌨️ Modifier Mauvais</button>
+
+        <div class="actions">
+            <button class="btn-clear" onclick="resetCompteurs()">❌ EFFACER</button>
+            <button class="btn-valider" onclick="enregistrerBassin()">💾 VALIDER BASSIN</button>
+        </div>
+    </div>
+
+    <div id="numpad">
+        <div id="numpad-val">0</div>
+        <div class="numpad-grid">
+            <button onclick="pressN(1)">1</button><button onclick="pressN(2)">2</button><button onclick="pressN(3)">3</button>
+            <button onclick="pressN(4)">4</button><button onclick="pressN(5)">5</button><button onclick="pressN(6)">6</button>
+            <button onclick="pressN(7)">7</button><button onclick="pressN(8)">8</button><button onclick="pressN(9)">9</button>
+            <button class="btn-gray" onclick="pressN('C')">C</button><button onclick="pressN(0)">0</button><button class="btn-gray" onclick="pressN('DEL')">⌫</button>
+        </div>
+        <button class="numpad-done" onclick="closeNumpad()">OK</button>
+    </div>
+
+    <div id="liste"></div>
+    <button id="btn-final" style="display:none;" onclick="location.reload()">🚀 ENVOYER AU BUREAU</button>
+
+    <script src="app.js"></script>
+</body>
+</html>

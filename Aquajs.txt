@@ -1,0 +1,59 @@
+let tournee = []; let bassinActuel = ""; let targetId = ""; let currentN = "";
+
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+
+function activerBassin(s) {
+    bassinActuel = s + document.getElementById('select' + s).value;
+    document.getElementById('select' + (s=='A'?'B':'A')).value = "";
+    document.getElementById('bassin-label').innerText = "BASSIN " + bassinActuel;
+    document.getElementById('ui-main').classList.remove('disabled');
+}
+
+function changeQty(id, d) {
+    let el = document.getElementById('disp-' + id);
+    let v = parseInt(el.innerText) + d;
+    el.innerText = v < 0 ? 0 : v;
+}
+
+function openNumpad(id) {
+    targetId = id; currentN = "";
+    document.getElementById('numpad-val').innerText = "0";
+    document.getElementById('numpad').style.display = "block";
+}
+
+function pressN(n) {
+    if(n==='C') currentN = "";
+    else if(n==='DEL') currentN = currentN.slice(0,-1);
+    else currentN += n;
+    document.getElementById('numpad-val').innerText = currentN || "0";
+}
+
+function closeNumpad() {
+    document.getElementById('disp-' + targetId).innerText = currentN || "0";
+    document.getElementById('numpad').style.display = "none";
+}
+
+function resetCompteurs() {
+    document.getElementById('disp-bons').innerText = 0;
+    document.getElementById('disp-mauvais').innerText = 0;
+}
+
+function enregistrerBassin() {
+    tournee.push({
+        bassin: bassinActuel, 
+        bons: document.getElementById('disp-bons').innerText, 
+        mauv: document.getElementById('disp-mauvais').innerText
+    });
+    render();
+    resetCompteurs();
+}
+
+function render() {
+    document.getElementById('liste').innerHTML = tournee.map((e,i) => `
+        <div class="entry">
+            <span><b>${e.bassin}</b> : ${e.bons} Bons / ${e.mauv} Mauv</span>
+            <button style="background:none; border:none; color:#e74c3c; font-weight:bold; font-size:1.2rem;" onclick="tournee.splice(${i},1);render()">X</button>
+        </div>
+    `).reverse().join('');
+    document.getElementById('btn-final').style.display = tournee.length > 0 ? "block" : "none";
+}
